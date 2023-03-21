@@ -1,4 +1,4 @@
-name: Lint
+name: Lint Golang Project
 on:
   push:
     branches:
@@ -7,10 +7,16 @@ jobs:
   lint:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
-      - name: Install linter
+      - name: Checkout code
+        uses: actions/checkout@v2
+      - name: Setup Golang
+        uses: actions/setup-go@v2
+        with:
+          go-version: ^1.18 # Use the latest version of Go 1.18.x
+          node-version: 16.x # Use Node.js 16
+      - name: Install Linter
         run: |
-          curl -sfL https://install.goreleaser.com/github.com/golangci/golangci-lint.sh | sh -s latest
-          sudo mv ./bin/golangci-lint /usr/local/bin/
-      - name: Run linter
-        run: golangci-lint run
+          go install github.com/golangci/golangci-lint/cmd/golangci-lint@v1.42.1
+      - name: Run Linter
+        run: golangci-lint run ./...
+
