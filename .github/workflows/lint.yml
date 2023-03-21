@@ -12,11 +12,11 @@ jobs:
       - name: Setup Golang
         uses: actions/setup-go@v2
         with:
-          go-version: ^1.18 # Use the latest version of Go 1.18.x
+          go-version: ^1.20 # Use the latest version of Go 1.18.x
           node-version: 16.x # Use Node.js 16
       - name: Install Linter
         run: |
           go install github.com/golangci/golangci-lint/cmd/golangci-lint@v1.42.1
       - name: Run Linter
-        run: golangci-lint run ./...
+        run: golangci-lint run --modules-download-mode=mod ./...
 
