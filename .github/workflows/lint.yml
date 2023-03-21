@@ -17,8 +17,11 @@ jobs:
       - name: Install Linter
         run: |
           go install github.com/golangci/golangci-lint/cmd/golangci-lint@v1.42.1
-      - name: Run Linter
+          #- name: Run Linter
+          #run: |
+          #cd /home/runner/work/go-micro
+          #golangci-lint run --modules-download-mode=mod ./...
+      - name: Print working directory
         run: |
-          cd /home/runner/work/go-micro
-          golangci-lint run --modules-download-mode=mod ./...
+          pwd
 
