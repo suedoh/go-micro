@@ -19,6 +19,6 @@ jobs:
           go install github.com/golangci/golangci-lint/cmd/golangci-lint@v1.42.1
       - name: Run Linter
         run: |
-          cd ${{ github.workspace }}
+          cd /home/runner/work/go-micro
           golangci-lint run --modules-download-mode=mod ./...
 
